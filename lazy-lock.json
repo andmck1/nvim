@@ -1,4 +1,8 @@
 {
   "lazy.nvim": { "branch": "main", "commit": "31ddbea7c10b6920c9077b66c97951ca8682d5c8" },
+  "nvim-treesitter": { "branch": "master", "commit": "11a3584b81c3249d2b6279305aee1c7ad273985a" },
+  "nvim-web-devicons": { "branch": "master", "commit": "20921d33c605ba24c8d0b76b379a54a9c83ba170" },
+  "plenary.nvim": { "branch": "master", "commit": "8aad4396840be7fc42896e3011751b7609ca4119" },
+  "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
   "telescope.nvim": { "branch": "master", "commit": "d26b666b45e5dde23332e4bde1227677f2d92e31" }
 }

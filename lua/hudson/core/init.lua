@@ -1,1 +1,1 @@
-require("hudson.core.remap")
+require("hudson.core.keymaps")
