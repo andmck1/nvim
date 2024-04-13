@@ -1,3 +1,3 @@
 require("hudson.core.set")
-require("hudsom.core.keymaps")
-
+require("hudson.core.keymaps")
+require("hudson.core.netrw")
