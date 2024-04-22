@@ -47,7 +47,7 @@ return {
             },
             defaults = {
                 file_ignore_patterns = {
-                    ".git/", ".data/", ".DS_Store"
+                    ".git/", ".data", ".DS_Store"
                 }
             }
         }
