@@ -16,6 +16,31 @@ return {
 					function(server_name)
 						require('lspconfig')[server_name].setup({})
 					end,
+
+                    ruff_lsp = function()
+                        require("lspconfig").ruff_lsp.setup({
+                            on_attach = function(client, bufnr)
+                                if client.name == "ruff_lsp" then
+                                    client.server_capabilities.hoverProvider = false
+                                end
+                            end
+                        })
+                    end,
+
+                    pyright = function()
+                        require("lspconfig").pyright.setup({
+                            settings = {
+                                pyright = {
+                                    disableOrganizeImports = true,
+                                },
+                                python = {
+                                    analysis = {
+                                        ignore = { "*" },
+                                    },
+                                },
+                            },
+                        })
+                    end
 				},
 			})
 
