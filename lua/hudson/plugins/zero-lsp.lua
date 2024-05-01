@@ -5,44 +5,32 @@ return {
 		"VonHeikemen/lsp-zero.nvim",
 		config = function()
 			local lsp_zero = require('lsp-zero')
+            local cmp = require("cmp")
 
-			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({buffer = bufnr})
-			end)
+            lsp_zero.on_attach(function(client, bufnr)
+                lsp_zero.default_keymaps({buffer = bufnr})
+            end)
+
+            cmp.setup({
+                mapping = {
+                    ['<C-k>'] = cmp.mapping.select_prev_item(),
+                    ['<C-j>'] = cmp.mapping.select_next_item(),
+                    ['<C-u>'] = lsp_zero.cmp_action().toggle_completion(),
+                    ['<Tab>'] = cmp.mapping.confirm({select = true}),
+                     
+                }
+            })
+            vim.keymap.set('n', '<leader>r', vim.lsp.buf.format)
+
 			require('mason').setup({})
 			require('mason-lspconfig').setup({
-				ensure_installed = {},
+				ensure_installed = {"ruff_lsp", "pyright", "lua_ls", "bashls"},
 				handlers = {
-					function(server_name)
-						require('lspconfig')[server_name].setup({})
-					end,
-
-                    ruff_lsp = function()
-                        require("lspconfig").ruff_lsp.setup({
-                            on_attach = function(client, bufnr)
-                                if client.name == "ruff_lsp" then
-                                    client.server_capabilities.hoverProvider = false
-                                end
-                            end
-                        })
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
                     end,
-
-                    pyright = function()
-                        require("lspconfig").pyright.setup({
-                            settings = {
-                                pyright = {
-                                    disableOrganizeImports = true,
-                                },
-                                python = {
-                                    analysis = {
-                                        ignore = { "*" },
-                                    },
-                                },
-                            },
-                        })
-                    end
-				},
-			})
+                },
+            })
 
 		end,
 	},
