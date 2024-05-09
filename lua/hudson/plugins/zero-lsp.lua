@@ -6,6 +6,7 @@ return {
 		config = function()
 			local lsp_zero = require('lsp-zero')
             local cmp = require("cmp")
+            lsp_zero.extend_lspconfig()
 
             lsp_zero.on_attach(function(client, bufnr)
                 lsp_zero.default_keymaps({buffer = bufnr})
@@ -17,7 +18,6 @@ return {
                     ['<C-j>'] = cmp.mapping.select_next_item(),
                     ['<C-u>'] = lsp_zero.cmp_action().toggle_completion(),
                     ['<Tab>'] = cmp.mapping.confirm({select = true}),
-                     
                 }
             })
             vim.keymap.set('n', '<leader>r', vim.lsp.buf.format)
