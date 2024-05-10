@@ -1,7 +1,7 @@
 local util = require("hudson.colours.earthsong.util")
 
 local colours = {
-    black = '#121418',
+    black = '#000000',
     red = '#C94234',
     green = '#85C54C',
     yellow = '#F5AE2E',
@@ -18,6 +18,8 @@ local colours = {
     bright_magenta = '#FF9269',
     bright_cyan = '#84F088',
     bright_white = '#F6F7EC',
+
+    background = "#000000"
 }
 
 local M = {}
@@ -25,10 +27,10 @@ local M = {}
 ---@class Palette
 M.default = {
   none = "NONE",
-  bg_dark = colours.black,
-  bg = colours.black,
+  bg_dark = colours.background,
+  bg = colours.background,
   bg_highlight = colours.bright_black,
-  terminal_black = colours.black,
+  terminal_black = colours.background,
   fg = colours.bright_white,
   fg_dark = colours.bright_white,
   fg_gutter = colours.bright_black,
