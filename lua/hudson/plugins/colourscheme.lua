@@ -1,11 +1,11 @@
 return {
 	{
-		"bluz71/vim-moonfly-colors",
-		name = "moonfly",
+		"shaunsingh/doom-vibrant.nvim",
 		lazy = false,
-		priority = 100,
+		priority = 50,
 		config = function()
-			vim.cmd("colorscheme moonfly")
+            vim.g.doom_disable_background = true
+            require("doom").set()
 		end
 	},
 }
