@@ -1,7 +1,7 @@
 local util = require("hudson.colours.earthsong.util")
 
 local colours = {
-    black = '#000000',
+    black = '#121418',
     red = '#C94234',
     green = '#85C54C',
     yellow = '#F5AE2E',
@@ -24,116 +24,79 @@ local colours = {
 
 local M = {}
 
+-- eg. function, class = green
+-- eg. names = white
+-- eg. comments = bright black
+-- eg .play = blue
+-- eg properties = yellow
+-- eg typing = cyan
+
+-- TODO
+-- comments: doesn't work for block comment
+-- separate comment and lint error?
+-- separate out instatiation from def, init?.
+-- add class to def, __init__, etc
+-- not all lsp and ruff errors coloured red
+-- change function colour
+-- change string colour
+-- separate out variables and function with no brackets
+-- separate out __init__ from def
+-- find bracket hilighting
+-- make block border for line width show red - currently background colour
 ---@class Palette
 M.default = {
   none = "NONE",
-  bg_dark = colours.background,
-  bg = colours.background,
-  bg_highlight = colours.bright_black,
-  terminal_black = colours.background,
-  fg = colours.bright_white,
-  fg_dark = colours.bright_white,
-  fg_gutter = colours.bright_black,
-  dark3 = colours.bright_black,
-  comment = colours.white,
-  dark5 = colours.blue,
-  blue0 = colours.blue,
-  blue = colours.bright_blue,
-  cyan = colours.cyan,
-  blue1 = colours.bright_blue,
-  blue2 = colours.bright_blue,
-  blue5 = colours.bright_blue,
-  blue6 = colours.bright_blue,
-  blue7 = colours.blue,
-  magenta = colours.magenta,
-  magenta2 = colours.bright_magenta,
-  purple = colours.magenta,
-  orange = colours.yellow,
-  yellow = colours.bright_yellow,
-  green = colours.green,
-  green1 = colours.bright_green,
-  green2 = colours.bright_green,
-  teal = colours.bright_magenta,
-  red = colours.red,
-  red1 = colours.bright_red,
-  git = { change = colours.blue, add = colours.cyan, delete = colours.red },
+  bg_dark = colours.bright_black, -- eg nvim input line
+  bg = colours.background, -- editor background
+  bg_highlight = colours.white, -- unclear
+  terminal_black = colours.white, -- unclear
+  fg = colours.bright_white, -- variables
+  fg_dark = colours.white, -- brackets
+  fg_gutter = colours.bright_black, -- line numbers
+  dark3 = colours.white, -- unclear
+  comment = colours.white, -- comment and lint warning
+  dark5 = colours.white, -- unclear
+  blue0 = colours.white, -- unclear
+  blue = colours.cyan, -- function definition and call
+  cyan = colours.white, -- unclear
+  blue1 = colours.cyan,  -- functions
+  blue2 = colours.white, -- unclear
+  blue5 = colours.white, -- eg operators, "in", :
+  blue6 = colours.blue, -- unclear
+  blue7 = colours.blue, -- unclear
+  magenta = colours.green, -- def, __init__, for, if, white and instatiation
+  magenta2 = colours.white, -- unclear
+  purple = colours.green, -- class, return
+  orange = colours.green, -- numbers
+  yellow = colours.white, -- block comment, properties
+  green = colours.bright_blue, -- strings
+  green1 = colours.blue, -- accessing properties (eg. self.board)
+  green2 = colours.white, -- unclear
+  teal = colours.bright_yellow, -- lsp warnings
+  red = colours.yellow, -- eg. self
+  red1 = colours.bright_red, -- errors
+  git = {
+      change = colours.white,
+      add = colours.bright_yellow,
+      delete = colours.bright_red
+  },
   gitSigns = {
-    add = colours.green,
-    change = colours.yellow,
-    delete = colours.red,
+    add = colours.bright_blue,
+    change = colours.bright_yellow,
+    delete = colours.bright_red,
   },
 }
-
-M.night = {
-    bg = colours.black,
-    bg_dark = colours.black
-}
-M.day = M.night
-
-M.moon = function()
-    local ret = {
-        none = "NONE",
-        bg_dark = "#1e2030",    --
-        bg = "#222436",         --
-        bg_highlight = "#2f334d", --
-        terminal_black = "#444a73", --
-        fg = "#c8d3f5",         --
-        fg_dark = "#828bb8",    --
-        fg_gutter = "#3b4261",
-        dark3 = "#545c7e",
-        comment = "#7a88cf", --
-        dark5 = "#737aa2",
-        blue0 = "#3e68d7", --
-        blue = "#82aaff", --
-        cyan = "#86e1fc", --
-        blue1 = "#65bcff", --
-        blue2 = "#0db9d7",
-        blue5 = "#89ddff",
-        blue6 = "#b4f9f8", --
-        blue7 = "#394b70",
-        purple = "#fca7ea", --
-        magenta2 = "#ff007c",
-        magenta = "#c099ff", --
-        orange = "#ff966c", --
-        yellow = "#ffc777", --
-        green = "#c3e88d", --
-        green1 = "#4fd6be", --
-        green2 = "#41a6b5",
-        teal = "#4fd6be", --
-        red = "#ff757f", --
-        red1 = "#c53b53", --
-    }
-    ret.comment = util.blend(ret.comment, ret.bg, "bb")
-    ret.git = {
-        change = util.blend(ret.blue, ret.bg, "ee"),
-        add = util.blend(ret.green, ret.bg, "ee"),
-        delete = util.blend(ret.red, ret.bg, "dd"),
-    }
-    ret.gitSigns = {
-        change = util.blend(ret.blue, ret.bg, "66"),
-        add = util.blend(ret.green, ret.bg, "66"),
-        delete = util.blend(ret.red, ret.bg, "aa"),
-    }
-    return ret
-end
 
 ---@return ColorScheme
 function M.setup(opts)
     opts = opts or {}
     local config = require("hudson.colours.earthsong.config")
 
-    local style = config.is_day() and config.options.light_style or config.options.style
-    local palette = M[style] or {}
-    if type(palette) == "function" then
-        palette = palette()
-    end
-
     -- Color Palette
     ---@class ColorScheme: Palette
-    local colors = vim.tbl_deep_extend("force", vim.deepcopy(M.default), palette)
+    local colors = M.default
 
     util.bg = colors.bg
-    util.day_brightness = config.options.day_brightness
 
     colors.diff = {
         add = util.darken(colors.green2, 0.15),
@@ -178,9 +141,6 @@ function M.setup(opts)
     }
 
     config.options.on_colors(colors)
-    if opts.transform and config.is_day() then
-        util.invert_colors(colors)
-    end
 
     return colors
 end
