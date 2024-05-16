@@ -34,3 +34,4 @@ vim.opt.mouse = ""
 
 vim.g.mapleader = " "
 
+vim.cmd("autocmd TermOpen * startinsert")

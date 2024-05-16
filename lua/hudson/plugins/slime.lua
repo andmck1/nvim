@@ -14,5 +14,15 @@ return {
         vim.keymap.set("n", "gzz", "<Plug>SlimeLineSend", { remap = true, silent = false })
         vim.keymap.set("x", "gz", "<Plug>SlimeRegionSend", { remap = true, silent = false })
         vim.keymap.set("n", "gzc", "<Plug>SlimeConfig", { remap = true, silent = false })
+
+        vim.keymap.set("n",
+            "<leader>py",
+            function()
+                local conda_env = os.getenv("CONDA_PREFIX")
+                vim.cmd("vs | wincmd l")
+                vim.cmd("terminal " .. conda_env .. "/bin/ipython")
+                vim.cmd("wincmd h")
+            end
+        )
     end,
 }
