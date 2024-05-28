@@ -33,5 +33,6 @@ vim.opt.colorcolumn = "80"
 vim.opt.mouse = ""
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.cmd("autocmd TermOpen * startinsert")
