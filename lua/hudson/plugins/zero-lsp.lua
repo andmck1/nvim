@@ -17,9 +17,6 @@ return {
                         disableOrganizeImports = true,
                     },
                     python = {
-                        analysis = {
-                            ignore = {"*"}
-                        },
                     },
                 },
             })
