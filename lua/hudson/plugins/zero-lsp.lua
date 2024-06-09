@@ -53,7 +53,9 @@ return {
                             "lua_ls",
                             "bashls",
                             "yamlls",
-                            "texlab"
+                            "texlab",
+                            "clangd",
+                            "codelldb"
                         },
                         handlers = {
                             function(server_name)

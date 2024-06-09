@@ -35,4 +35,6 @@ vim.opt.mouse = ""
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.cmd("set tabstop=4")
+
 vim.cmd("autocmd TermOpen * startinsert")
