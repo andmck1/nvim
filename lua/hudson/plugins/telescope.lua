@@ -11,7 +11,7 @@ return {
                 require "nvim-treesitter.configs".setup {
                     highlight = {
                         enable = true,
-                        disable = { "latex", "tex" },
+                        disable = { "latex", "tex" , "terraform"},
                     },
                 }
             end
@@ -25,7 +25,7 @@ return {
                 require 'nvim-treesitter.configs'.setup {
                     ensure_installed = {
                         "c", "lua", "vim", "vimdoc", "query", "javascript",
-                        "typescript", "python", "terraform", "yaml"
+                        "typescript", "python", "yaml"
                     },
 
                     sync_install = true,
