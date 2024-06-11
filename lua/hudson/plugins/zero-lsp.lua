@@ -55,7 +55,6 @@ return {
                             "yamlls",
                             "texlab",
                             "clangd",
-                            "codelldb"
                         },
                         handlers = {
                             function(server_name)
