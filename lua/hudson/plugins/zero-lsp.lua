@@ -60,6 +60,21 @@ return {
                             function(server_name)
                                 require('lspconfig')[server_name].setup({})
                             end,
+                            ["yamlls"] = function()
+                                local lspconfig = require("lspconfig")
+                                lspconfig.yamlls.setup {
+                                    settings = {
+                                        yaml = {
+                                            format = {
+                                                enable = true
+                                            },
+                                            schemaStore = {
+                                                enable = true
+                                            }
+                                        }
+                                    }
+                                }
+                            end,
                         },
                     })
                 end
