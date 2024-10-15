@@ -55,6 +55,7 @@ return {
                             "yamlls",
                             "texlab",
                             "clangd",
+                            "terraformls",
                         },
                         handlers = {
                             function(server_name)
@@ -72,6 +73,14 @@ return {
                                                 enable = true
                                             }
                                         }
+                                    }
+                                }
+                            end,
+                            ["terraformls"] = function()
+                                local lspconfig = require("lspconfig")
+                                lspconfig.terraformls.setup {
+                                    filetypes = {
+                                        "terraform", "terraform-vars"
                                     }
                                 }
                             end,
