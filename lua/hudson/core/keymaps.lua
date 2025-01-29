@@ -1,5 +1,3 @@
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 -- highlight and move down and up
 vim.keymap.set("v", "J", ":m '>+1<CR>gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv")
@@ -34,4 +32,5 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
 -- nvim-tree
-vim.keymap.set("n", "<leader>nt", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>to", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>tf", ":NvimTreeFindFile<CR>")
