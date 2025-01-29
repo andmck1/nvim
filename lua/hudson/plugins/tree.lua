@@ -5,6 +5,9 @@ return {
     },
     init = function()
         require("nvim-tree").setup {
+            hijack_netrw = true,
+            hijack_unnamed_buffer_when_opening = false,
+            disable_netrw = true,
             git = {
                 enable = true,
                 ignore = false,
@@ -17,6 +20,11 @@ return {
             },
             view = {
                 width = 60
+            },
+            actions = {
+                open_file = {
+                    quit_on_open = true
+                }
             },
             sort_by = function(nodes)
                 local paths = {}
