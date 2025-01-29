@@ -32,3 +32,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 --- lsp code actions
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+
+-- nvim-tree
+vim.keymap.set("n", "<leader>nt", ":NvimTreeToggle<CR>")

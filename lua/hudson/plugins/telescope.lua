@@ -11,7 +11,7 @@ return {
                 require "nvim-treesitter.configs".setup {
                     highlight = {
                         enable = true,
-                        disable = { "latex", "tex" , "terraform"},
+                        disable = { "latex", "tex", "terraform" },
                     },
                 }
             end
