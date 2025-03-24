@@ -33,3 +33,7 @@ vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
 -- netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+-- split windows
+vim.keymap.set("n", "[w", "<C-w>W")
+vim.keymap.set("n", "]w", "<C-w>w")
