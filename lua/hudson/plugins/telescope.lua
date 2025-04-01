@@ -25,7 +25,7 @@ return {
                 require 'nvim-treesitter.configs'.setup {
                     ensure_installed = {
                         "c", "lua", "vim", "vimdoc", "query", "javascript",
-                        "typescript", "python", "yaml"
+                        "typescript", "python", "yaml", "cpp"
                     },
 
                     sync_install = true,
