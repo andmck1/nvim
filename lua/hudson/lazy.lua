@@ -12,21 +12,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("hudson.plugins")
-
-local cmp = require('cmp')
-
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-})
