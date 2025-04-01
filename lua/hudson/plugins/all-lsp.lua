@@ -1,0 +1,99 @@
+return {
+    {
+        'neovim/nvim-lspconfig',
+        config = function()
+            local lspconfig = require("lspconfig")
+            local lspconfig_defaults = require('lspconfig').util.default_config
+            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+                'force',
+                lspconfig_defaults.capabilities,
+                require('cmp_nvim_lsp').default_capabilities()
+            )
+
+
+            local on_attach = function(client, bufnr)
+                if client.name == 'ruff' then
+                    client.server_capabilities.hoverProvider = false
+                end
+            end
+            lspconfig.ruff.setup({
+                on_attach = on_attach,
+            })
+            lspconfig.pyright.setup({
+                settings = {
+                    pyright = {
+                        disableOrganizeImports = true,
+                    },
+                    python = {
+                    },
+                },
+            })
+            require('mason').setup({})
+            require('mason-lspconfig').setup({
+                ensure_installed = {
+                    "ruff",
+                    "pyright",
+                    "lua_ls",
+                    "bashls",
+                    "yamlls",
+                    "texlab",
+                    "clangd",
+                    "terraformls",
+                },
+                handlers = {
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
+                    end,
+                    ["yamlls"] = function()
+                        local lspconfig = require("lspconfig")
+                        lspconfig.yamlls.setup {
+                            settings = {
+                                yaml = {
+                                    format = {
+                                        enable = true
+                                    },
+                                    schemaStore = {
+                                        enable = true
+                                    }
+                                }
+                            }
+                        }
+                    end,
+                    ["terraformls"] = function()
+                        local lspconfig = require("lspconfig")
+                        lspconfig.terraformls.setup {
+                            filetypes = {
+                                "terraform", "terraform-vars"
+                            }
+                        }
+                    end,
+                },
+            })
+        end,
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/nvim-cmp',
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+        },
+        postsetup = function()
+            local cmp = require('cmp')
+
+            cmp.setup({
+                sources = {
+                    { name = 'nvim_lsp' },
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-k>'] = cmp.mapping.select_prev_item(),
+                    ['<C-j>'] = cmp.mapping.select_next_item(),
+                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                }),
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end,
+                },
+            })
+        end
+    },
+}
