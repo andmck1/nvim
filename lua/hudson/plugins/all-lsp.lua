@@ -67,6 +67,20 @@ return {
                             }
                         }
                     end,
+                    ["lua_ls"] = function()
+                        local lspconfig = require("lspconfig")
+                        lspconfig.terraformls.setup {
+                            settings = {
+                                Lua = {
+                                    diagnostics = {
+                                        globals = {
+                                            "vim"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    end,
                 },
             })
 
