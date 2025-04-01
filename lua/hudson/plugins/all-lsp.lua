@@ -76,24 +76,5 @@ return {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
         },
-        postsetup = function()
-            local cmp = require('cmp')
-
-            cmp.setup({
-                sources = {
-                    { name = 'nvim_lsp' },
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-k>'] = cmp.mapping.select_prev_item(),
-                    ['<C-j>'] = cmp.mapping.select_next_item(),
-                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-                }),
-                snippet = {
-                    expand = function(args)
-                        vim.snippet.expand(args.body)
-                    end,
-                },
-            })
-        end
     },
 }
