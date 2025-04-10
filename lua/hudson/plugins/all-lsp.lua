@@ -69,7 +69,7 @@ return {
                     end,
                     ["lua_ls"] = function()
                         local lspconfig = require("lspconfig")
-                        lspconfig.terraformls.setup {
+                        lspconfig.lua_ls.setup {
                             settings = {
                                 Lua = {
                                     diagnostics = {
