@@ -4,14 +4,19 @@ return {
         config = function()
             local lspconfig = require("lspconfig")
             local lspconfig_defaults = require('lspconfig').util.default_config
+
             lspconfig_defaults.capabilities = vim.tbl_deep_extend(
                 'force',
                 lspconfig_defaults.capabilities,
                 require('cmp_nvim_lsp').default_capabilities()
             )
+            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+                'force',
+                lspconfig_defaults.capabilities,
+                require('blink.cmp').get_lsp_capabilities({}, false)
+            )
 
-
-            local on_attach = function(client, bufnr)
+            local on_attach = function(client, _)
                 if client.name == 'ruff' then
                     client.server_capabilities.hoverProvider = false
                 end
@@ -42,10 +47,10 @@ return {
                 },
                 handlers = {
                     function(server_name)
-                        require('lspconfig')[server_name].setup({})
+                        local capabilities = require('blink.cmp').get_lsp_capabilities()
+                        lspconfig[server_name].setup({ capabilities = capabilities })
                     end,
                     ["yamlls"] = function()
-                        local lspconfig = require("lspconfig")
                         lspconfig.yamlls.setup {
                             settings = {
                                 yaml = {
