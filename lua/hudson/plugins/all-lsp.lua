@@ -81,7 +81,7 @@ return {
                                         globals = {
                                             "vim"
                                         }
-                                    }
+                                    },
                                 }
                             }
                         }
