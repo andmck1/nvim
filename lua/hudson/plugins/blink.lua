@@ -3,8 +3,7 @@ return {
   dependencies = { 'rafamadriz/friendly-snippets' },
   version = 'v1.*',
   opts = {
-    keymap = { preset = 'default' },
-
+    keymap = { preset = 'super-tab' },
     appearance = {
       nerd_font_variant = 'mono'
     },
