@@ -14,7 +14,13 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+
+if vim.loop.os_uname().sysname == "Windows_NT" then
+    vim.opt.undodir = os.getenv("XDG_CONFIG_HOME") .. "\\.vim\\undodir"
+else
+    vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+end
+
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
