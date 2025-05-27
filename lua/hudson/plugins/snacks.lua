@@ -2,12 +2,17 @@ return {
     "folke/snacks.nvim",
     opts = {
         picker = {
-            files = {
-                hidden = true,
-                exclude = "%.git/",
-                "%.data/",
-                "%.DS_Store"
-            }
+            sources = {
+                files = {
+                    hidden = true,
+                    exclude = {
+                        "%.git/",
+                        "%.data/",
+                        "%.DS_Store",
+                        "build/",
+                    },
+                },
+            },
         }
     },
     keys = {
