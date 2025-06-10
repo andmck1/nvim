@@ -2,6 +2,9 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv")
 
+-- redo
+vim.keymap.set("n", "U", ":red<CR>")
+
 -- keep cursor in the centre during page jumps and searches
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

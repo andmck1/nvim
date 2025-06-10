@@ -10,6 +10,7 @@ return {
                         "%.data/",
                         "%.DS_Store",
                         "build/",
+                        ".cache",
                     },
                 },
             },
