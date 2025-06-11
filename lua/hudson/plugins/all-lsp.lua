@@ -76,7 +76,7 @@ return {
                         local lspconfig = require("lspconfig")
                         lspconfig.lua_ls.setup {
                             settings = {
-                                Lua = {
+                                lua = {
                                     diagnostics = {
                                         globals = {
                                             "vim"
@@ -85,7 +85,7 @@ return {
                                 }
                             }
                         }
-                    end
+                    end,
                 },
             })
 
