@@ -24,5 +24,7 @@ return {
     },
     dependencies = {
         "nvim-tree/nvim-web-devicons"
-    }
+    },
+    priority = 5000,
+    lazy = false,
 }

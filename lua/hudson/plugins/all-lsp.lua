@@ -98,7 +98,7 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     ['<C-k>'] = cmp.mapping.select_prev_item(),
                     ['<C-j>'] = cmp.mapping.select_next_item(),
-                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                    ['<C-A>'] = cmp.mapping.confirm({ select = true }),
                 }),
                 snippet = {
                     expand = function(args)
