@@ -1,3 +1,3 @@
 return {
-    "ribru17/bamboo.nvim"
+    "rebelot/kanagawa.nvim"
 }
