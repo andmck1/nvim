@@ -48,7 +48,9 @@ return {
                 handlers = {
                     function(server_name)
                         local capabilities = require('blink.cmp').get_lsp_capabilities()
-                        lspconfig[server_name].setup({ capabilities = capabilities })
+                        lspconfig[server_name].setup({
+                            capabilities = capabilities,
+                        })
                     end,
                     ["yamlls"] = function()
                         lspconfig.yamlls.setup {
@@ -100,11 +102,6 @@ return {
                     ['<C-j>'] = cmp.mapping.select_next_item(),
                     ['<C-A>'] = cmp.mapping.confirm({ select = true }),
                 }),
-                snippet = {
-                    expand = function(args)
-                        vim.snippet.expand(args.body)
-                    end,
-                },
             })
         end,
         dependencies = {
