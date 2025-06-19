@@ -16,23 +16,16 @@ return {
                 require('blink.cmp').get_lsp_capabilities({}, false)
             )
 
-            local on_attach = function(client, _)
-                if client.name == 'ruff' then
-                    client.server_capabilities.hoverProvider = false
-                end
-            end
-            lspconfig.ruff.setup({
-                on_attach = on_attach,
-            })
-            lspconfig.pyright.setup({
-                settings = {
-                    pyright = {
-                        disableOrganizeImports = true,
-                    },
-                    python = {
-                    },
+            lspconfig['clangd'].setup {
+                cmd = {
+                    "clangd",
+                    "--background-index",
+                    "--pch-storage=memory",
+                    "--compile-commands-dir=build",
+                    "--limit-results=50",
                 },
-            })
+            }
+
             require('mason').setup({})
             require('mason-lspconfig').setup({
                 ensure_installed = {
@@ -42,7 +35,6 @@ return {
                     "bashls",
                     "yamlls",
                     "texlab",
-                    "clangd",
                     "terraformls",
                 },
                 handlers = {
@@ -52,6 +44,30 @@ return {
                             capabilities = capabilities,
                         })
                     end,
+
+                    ["ruff"] = function()
+                        local on_attach = function(client, _)
+                            if client.name == 'ruff' then
+                                client.server_capabilities.hoverProvider = false
+                            end
+                        end
+                        lspconfig.ruff.setup({
+                            on_attach = on_attach,
+                        })
+                    end,
+
+                    ["pyright"] = function()
+                        lspconfig.pyright.setup({
+                            settings = {
+                                pyright = {
+                                    disableOrganizeImports = true,
+                                },
+                                python = {
+                                },
+                            },
+                        })
+                    end,
+
                     ["yamlls"] = function()
                         lspconfig.yamlls.setup {
                             settings = {
@@ -66,6 +82,7 @@ return {
                             }
                         }
                     end,
+
                     ["terraformls"] = function()
                         local lspconfig = require("lspconfig")
                         lspconfig.terraformls.setup {
@@ -74,6 +91,7 @@ return {
                             }
                         }
                     end,
+
                     ["lua_ls"] = function()
                         local lspconfig = require("lspconfig")
                         lspconfig.lua_ls.setup {
