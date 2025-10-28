@@ -11,6 +11,7 @@ return {
                         "%.DS_Store",
                         "build/",
                         ".cache",
+                        "assets",
                     },
                 },
             },

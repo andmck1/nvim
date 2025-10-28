@@ -59,3 +59,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- split windows
 vim.keymap.set("n", "[w", "<C-w>W")
 vim.keymap.set("n", "]w", "<C-w>w")
+
+-- vscode
+vim.keymap.set("n", "<leader>v", ":!code %<CR>")

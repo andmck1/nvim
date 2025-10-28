@@ -2,6 +2,12 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = function()
+            vim.lsp.config('lua_ls', {
+                settings = { Lua = { diagnostics = { globals = { 'vim', 'Snacks' } } } }
+            })
+            vim.lsp.config('cmake',
+                { settings = { CMake = { filetypes = { "cmake", "CMakeLists.txt" } } }
+                })
             vim.lsp.config('clangd', {
                 cmd = {
                     "clangd",
@@ -9,9 +15,8 @@ return {
                     "--pch-storage=memory",
                     "--compile-commands-dir=build",
                     "--limit-results=50",
-                },
-            }
-            )
+                }
+            })
 
             local cmp = require('cmp')
 
