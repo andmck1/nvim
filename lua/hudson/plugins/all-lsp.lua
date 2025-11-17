@@ -15,7 +15,8 @@ return {
                     "--pch-storage=memory",
                     "--compile-commands-dir=build",
                     "--limit-results=50",
-                }
+                },
+                filetypes = { "cpp", "h" }
             })
 
             local cmp = require('cmp')
