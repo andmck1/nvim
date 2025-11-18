@@ -62,3 +62,7 @@ vim.keymap.set("n", "]w", "<C-w>w")
 
 -- vscode
 vim.keymap.set("n", "<leader>v", ":!code %<CR>")
+
+-- git
+vim.keymap.set("n", "<leader>gb", "<Cmd>GBrowse<CR>")
+vim.keymap.set("n", "<leader>gg", ":terminal lazygit<CR>")

@@ -7,7 +7,7 @@ return {
         require 'nvim-treesitter.install'.prefer_git = false
         require 'nvim-treesitter.install'.compilers = { 'clang' }
         vim.api.nvim_create_autocmd('FileType', {
-            pattern = { 'python' },
+            pattern = { 'python', 'yaml', 'gitignore' },
             callback = function()
                 vim.treesitter.start()
             end,
