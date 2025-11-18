@@ -18,7 +18,24 @@ return {
                 },
                 filetypes = { "cpp", "h" }
             })
-
+            vim.lsp.config('ruff', {
+                settings = {},
+            })
+            vim.lsp.enable('ruff')
+            vim.lsp.config('pyright', {
+                setup = {
+                    settings = {
+                        pyright = {
+                            disableOrganizeImports = true,
+                        },
+                        python = {
+                            analysis = {
+                                ignore = { '*' },
+                            },
+                        },
+                    },
+                },
+            })
             local cmp = require('cmp')
 
             cmp.setup({

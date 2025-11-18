@@ -24,7 +24,8 @@ return {
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
     },
     dependencies = {
-        "nvim-tree/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons",
+        -- "nvim-treesitter/nvim-treesitter"
     },
     priority = 5000,
     lazy = false,
