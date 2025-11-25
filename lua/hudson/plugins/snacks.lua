@@ -13,7 +13,9 @@ return {
                         ".cache",
                         "assets",
                         "__pycache__",
-                        ".ipynb_checkpoints"
+                        ".ipynb_checkpoints",
+                        "mlruns",
+                        "dist"
                     },
                 },
             },
