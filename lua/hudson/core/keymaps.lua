@@ -34,9 +34,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 --- lsp code actions
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
--- netrw
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 -- lsp
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',

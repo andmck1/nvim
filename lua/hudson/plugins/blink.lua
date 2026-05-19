@@ -1,3 +1,4 @@
 return {
-    'saghen/blink.cmp',
+	"saghen/blink.cmp",
+	dependencies = "saghen/blink.lib",
 }

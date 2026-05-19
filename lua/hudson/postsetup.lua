@@ -8,4 +8,11 @@ vim.cmd("highlight ColorColumn guibg=DarkRed")
 
 -- filetypes
 vim.filetype.add({
-    extension = { hlsl = "hlsl" } })
+	extension = { hlsl = "hlsl" },
+})
+vim.filetype.add({
+	filename = {
+		["CMakeLists.txt"] = "cmake",
+	},
+})
+
