@@ -11,13 +11,7 @@ return {
 					},
 				},
 			})
-			vim.lsp.config("cmake", {
-				settings = {
-					CMake = {
-						filetypes = { "cmake", "CMakeLists.txt" },
-					},
-				},
-			})
+			vim.lsp.enable("lua_ls")
 			vim.lsp.config("clangd", {
 				cmd = {
 					"clangd",
@@ -26,7 +20,7 @@ return {
 					"--compile-commands-dir=build",
 					"--limit-results=50",
 				},
-				filetypes = { "cpp", "h" },
+				filetypes = { "cpp" },
 			})
 			vim.lsp.config("ruff", {
 				settings = {},
