@@ -42,13 +42,38 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+		vim.keymap.set(
+			"n",
+			"gD",
+			"<cmd>lua vim.lsp.buf.declaration()<cr>",
+			opts
+		)
+		vim.keymap.set(
+			"n",
+			"gi",
+			"<cmd>lua vim.lsp.buf.implementation()<cr>",
+			opts
+		)
+		vim.keymap.set(
+			"n",
+			"go",
+			"<cmd>lua vim.lsp.buf.type_definition()<cr>",
+			opts
+		)
 		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set(
+			"n",
+			"gs",
+			"<cmd>lua vim.lsp.buf.signature_help()<cr>",
+			opts
+		)
 		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+		vim.keymap.set(
+			"n",
+			"<F4>",
+			"<cmd>lua vim.lsp.buf.code_action()<cr>",
+			opts
+		)
 	end,
 })
 
@@ -63,3 +88,31 @@ vim.keymap.set("n", "]w", "<C-w>w")
 
 -- vscode
 vim.keymap.set("n", "<leader>v", ":!code %<CR>")
+
+-- gdb
+vim.keymap.set("n", "<leader>b", function()
+	local filepath = vim.fn.expand("%:p")
+	local line = vim.fn.line(".")
+
+	local git_root = vim.fn.systemlist(
+		"git -C "
+			.. vim.fn.shellescape(vim.fn.fnamemodify(filepath, ":h"))
+			.. " rev-parse --show-toplevel"
+	)[1]
+
+	if vim.v.shell_error ~= 0 or not git_root then
+		vim.notify(
+			"Not inside a git repository",
+			vim.log.levels.ERROR,
+			{ title = "Copy Breakpoint" }
+		)
+		return
+	end
+
+	local rel_path = filepath:sub(#git_root + 2)
+
+	local result = string.format("b %s:%d", rel_path, line)
+	vim.fn.setreg("+", result)
+
+	vim.notify(result, vim.log.levels.INFO, { title = "Copied Breakpoint" })
+end, { desc = "Copy file:line as debugger breakpoint string" })

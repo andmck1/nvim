@@ -15,10 +15,19 @@ return {
 						"80",
 					},
 				},
+				prettier = {
+					prepend_args = {
+						"--print-width",
+						"80",
+						"--prose-wrap",
+						"always",
+					},
+				},
 			},
 			formatters_by_ft = {
 				cmake = { "gersemi" },
 				lua = { "stylua" },
+				markdown = { "prettier" },
 			},
 		})
 	end,
