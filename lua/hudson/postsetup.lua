@@ -16,3 +16,4 @@ vim.filetype.add({
 	},
 })
 
+vim.o.exrc = true

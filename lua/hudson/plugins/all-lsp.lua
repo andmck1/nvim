@@ -22,6 +22,7 @@ return {
 				},
 				filetypes = { "cpp" },
 			})
+
 			vim.lsp.config("ruff", {
 				settings = {},
 			})
