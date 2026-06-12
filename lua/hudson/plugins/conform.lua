@@ -23,11 +23,19 @@ return {
 						"always",
 					},
 				},
+				gdscript_formatter = {
+					command = "gdscript-formatter",
+					prepend_args = {
+						"--max-line-length",
+						80,
+					},
+				},
 			},
 			formatters_by_ft = {
 				cmake = { "gersemi" },
 				lua = { "stylua" },
 				markdown = { "prettier" },
+				gdscript = { "gdscript_formatter" },
 			},
 		})
 	end,

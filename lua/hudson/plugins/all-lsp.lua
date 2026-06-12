@@ -41,6 +41,8 @@ return {
 					},
 				},
 			})
+            vim.lsp.enable("gdscript");
+
 			local cmp = require("cmp")
 
 			cmp.setup({
