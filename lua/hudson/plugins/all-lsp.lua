@@ -23,6 +23,12 @@ return {
 				filetypes = { "cpp" },
 			})
 
+			vim.lsp.config("slangd", {
+				filetypes = { "hlsl", "shaderslang", "slang" },
+			})
+
+			vim.lsp.enable("slangd")
+
 			vim.lsp.config("ruff", {
 				settings = {},
 			})

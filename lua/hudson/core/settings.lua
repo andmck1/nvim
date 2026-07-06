@@ -44,3 +44,11 @@ vim.g.maplocalleader = " "
 vim.cmd("set tabstop=4")
 
 vim.cmd("autocmd TermOpen * startinsert")
+
+-- Recognise .slang and .slangh as slang filetype (shaderslang for treesitter compatibility)
+vim.filetype.add({
+	extension = {
+		slang = "shaderslang",
+		slangh = "shaderslang",
+	},
+})
