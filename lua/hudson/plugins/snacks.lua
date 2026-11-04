@@ -26,6 +26,7 @@ return {
 						".specify/",
 						".opencode/",
 						"specs/",
+                        "**.gd.uid",
 					},
 				},
 				grep = {
@@ -44,6 +45,7 @@ return {
 						".specify/",
 						".opencode/",
 						"specs/",
+                        "**.gd.uid",
 					},
 				},
 			},
