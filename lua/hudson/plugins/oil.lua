@@ -1,40 +1,41 @@
 return {
-	"stevearc/oil.nvim",
+    "stevearc/oil.nvim",
 
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    },
 
-	config = function()
-		require("oil").setup({
-			default_file_explorer = true,
+    config = function()
+        local hidden_names = {
+            [".git"] = true,
+            [".ipynb_checkpoints"] = true,
+            ["__pycache__"] = true,
+        }
 
-			delete_to_trash = false,
+        require("oil").setup({
+            default_file_explorer = true,
 
-			skip_confirm_for_simple_edits = true,
+            delete_to_trash = false,
 
-			view_options = {
-				show_hidden = false,
+            skip_confirm_for_simple_edits = true,
 
-				is_hidden_file = function(name)
-					local hidden = {
-						[".git"] = true,
-						[".ipynb_checkpoints"] = true,
-						["__pycache__"] = true,
-					}
+            view_options = {
+                show_hidden = false,
 
-					return hidden[name]
-				end,
-			},
+                is_hidden_file = function(name, _)
+                    return hidden_names[name] == true
+                        or name:match("%.gd%.uid$") ~= nil
+                end,
+            },
 
-			win_options = {
-				signcolumn = "no",
-				number = false,
-				relativenumber = false,
-				wrap = false,
-			},
-		})
+            win_options = {
+                signcolumn = "no",
+                number = false,
+                relativenumber = false,
+                wrap = false,
+            },
+        })
 
-		vim.keymap.set("n", "-", "<CMD>Oil<CR>")
-	end,
+        vim.keymap.set("n", "-", "<CMD>Oil<CR>")
+    end,
 }
