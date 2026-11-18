@@ -89,6 +89,23 @@ vim.keymap.set("n", "]w", "<C-w>w")
 -- vscode
 vim.keymap.set("n", "<leader>v", ":!code %<CR>")
 
+-- open system file explorer (dolphin) at the current file/directory
+vim.keymap.set("n", "<leader>e", function()
+	local args
+	if vim.bo.filetype == "oil" then
+		args = { require("oil").get_current_dir() }
+	else
+		local file = vim.fn.expand("%:p")
+		if file ~= "" and vim.fn.filereadable(file) == 1 then
+			args = { "--select", file }
+		else
+			args = { vim.fn.getcwd() }
+		end
+	end
+
+	vim.system(vim.list_extend({ "dolphin", "--new-window" }, args), { detach = true })
+end, { desc = "Open file explorer at current file/directory" })
+
 -- gdb
 vim.keymap.set("n", "<leader>b", function()
 	local filepath = vim.fn.expand("%:p")
