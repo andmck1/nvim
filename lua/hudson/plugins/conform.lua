@@ -25,9 +25,9 @@ return {
 				},
 				gdscript_formatter = {
 					command = "gdscript-formatter",
-					prepend_args = {
+					args = {
 						"--max-line-length",
-						80,
+						"80",
 					},
 				},
 			},
